@@ -1,0 +1,350 @@
+<html lang="en">
+
+	<head>
+		
+		<link rel="icon" href="asset/tile000.png">
+	
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+		<title>UMN Gotcha</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="asset/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+			.header {
+				margin: auto;
+				width: 80%;
+				border: 1px solid #73AD21;
+				padding: 10px;
+				background-color: bisque;
+			}  
+			.dashboard_body{
+				margin: auto;
+				width: 100%;
+				border: 1px solid #73AD21;
+				padding: 10px;
+				background-color: bisque;
+				
+			}  
+			.form{
+				margin: auto;
+				width: 40%;
+				border: 3px solid lightcyan;
+				padding: 10px;
+				background-color: lightcyan;
+			}
+			.character_select {
+				display:none;
+			}
+			
+			.status{
+				margin: auto;
+				width: 70%;
+				border: 3px solid bisque;
+				padding: 10px;
+				background-color: bisque;
+			}
+			.status2{
+				margin: auto;
+				width: 70%;
+				
+				padding: 10px;
+				
+			}
+			#progressBar {
+			width: 20%;
+			height: 20px;
+			background-color: #ddd;
+			border-radius: 10px;
+			overflow: hidden;
+			}
+			#progress {
+				width: 100%;
+				height: 100%;
+				background-color: #4CAF50;
+				border-radius: 10px;
+				transition: width 1s linear;
+			}
+			
+			
+		</style>
+	
+	</head>
+
+	<body font color="white" onload="startTime()">
+		<div class="header" align="center">
+			<img src="asset/ExportedIcons/Icon_Diamond.png" width="100px" height="80px">
+			
+			<h1>UMN GOTCHA</h1>
+		</div>
+		<hr style="height:10px;border-width:0;color:gray;background-color:gray">
+		<div class="dashboard_body">
+				<<div class="" align="center">
+							
+					<p>
+					<div id="progressBar"><label>
+						<div id="progress"><img src="asset/ExportedIcons/Icon_Food.png" width="30" height="20"></label></div>
+					</div>
+					</p>
+					<p>
+					<div id="progressBar"><label>
+						<div id="progress"><img src="asset/ExportedIcons/Icon_Award.png" width="30" height="20"></label></div>
+					</div>
+					</p>
+					<p>
+						<div id="progressBar"><label>
+							<div id="progress"><img src="asset/ExportedIcons/Icon_Look.png" width="30" height="20"></label></div>
+						</div>
+					</p>
+					<p>
+						<div id="progressBar"><label>
+							<div id="progress"><img src="asset/ExportedIcons/Icon_Beaker.png" width="30" height="20"></label></div>
+						</div>
+					</p>
+																	
+					
+					
+						<div align="center">
+							Level 1
+						</div>
+						<br></br>
+				</div>
+				<div class="" align="center">
+					<script type="text/javascript">
+						//<![CDATA[
+						var h=(new Date()).getHours();
+						var m=(new Date()).getMinutes();
+						var s=(new Date()).getSeconds();
+						if (h >= 4 && h < 10) document.writeln("Selamat pagi,");
+						if (h >= 10 && h < 15) document.writeln("Selamat siang,");
+						if (h >= 15 && h < 18) document.writeln("Selamat sore,");
+						if (h >= 18 || h < 4) document.writeln("Selamat malam,");
+						//]]>
+					</script>
+				</div>
+				<br></br>
+				<div class="" align="center">
+					
+					<h4><div id="txt" align="center"></div></h4>
+				</div>
+				<br></br>
+				<div align="left">
+					<div align="center">
+						<img src="asset/dino idle.gif" width="60px" height="60px">
+						<canvas id="ruang" width="300" height="300"></canvas>
+					</div>
+					<div class="clock"></div>
+				</div>
+			
+				<div class="status2" align="center">
+					
+					<Ul>	
+						<label></label>
+						<button type="submit" value="petname">Makan</button>
+						<label></label>
+						<button type="submit" value="petname">Tidur</button>
+					</Ul>
+					<Ul>					
+						<label></label>
+						<button type="submit" value="petname" onclick="location.href='index.html';">Selesai</button>
+						
+						<label></label>
+						<button type="submit" value="petname">Obat</button>
+					</Ul>
+					</form>
+				</div>
+			</form>
+		</div>
+		<script>
+			function startTime() {
+			const today = new Date();
+			let h = today.getHours();
+			let m = today.getMinutes();
+			let s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+			setTimeout(startTime, 1000);
+			}
+		
+			function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+			}
+		</script>
+		<script type="text/javascript">
+            $(document).ready(function() {
+ 
+              // deklarasi
+              var ruang = $("#ruang")[0];
+              var ctx = ruang.getContext("2d");
+              var lebar = $("#ruang").width();
+              var tinggi = $("#ruang").height();
+ 
+              var cw = 10;
+              var tekan ;
+              var makanan;
+              var nilai;
+ 
+              //membuat cell aray untuk membuat ular
+              var array_ular; 
+ 
+              function init() {
+                tekan = "right"; //default direction
+                create_snake();
+                create_makanan(); //membuat makanan untuk ular
+                //nilai game
+                nilai = 0;
+ 
+                if (typeof game_loop != "undefined") clearInterval(game_loop);
+                game_loop = setInterval(paint, 60);
+            }
+ 
+            init();
+ 
+              // membuat ular
+              function create_snake() {
+                // menetapkan jumlah panjang awal ular
+                var length = 5; //panjang ular default
+                array_ular = [];
+                for (var i = length - 1; i >= 0; i--) {
+                  //membuat ular horizontal mulai dari arah kiri
+                  array_ular.push({ x: i, y: 0 });
+              }
+            }
+ 
+              //membuat makanan untuk ular
+              function create_makanan() {
+                makanan = {
+                  x: Math.round(Math.random() * (lebar - cw) / cw),
+                  y: Math.round(Math.random() * (tinggi - cw) / cw)
+              };
+            }
+ 
+              //pengaturan
+              function paint() {
+                // warna background
+                ctx.fillStyle = "#ecf0f1";
+                ctx.fillRect(0, 0, lebar, tinggi);    
+                ctx.strokeStyle = "#2c3e50";
+                ctx.strokeRect(0, 0, lebar, tinggi);
+ 
+                //membuat pergerakan untuk ular
+                var nx = array_ular[0].x;
+                var ny = array_ular[0].y;
+                if (tekan == "right") nx++;
+                else if (tekan == "left") nx--;
+                else if (tekan == "up") ny--;
+                else if (tekan == "down") ny++;
+ 
+                //memeriksa tabrakan
+                if (
+                  nx == -1 ||
+                  nx == lebar / cw ||
+                  ny == -1 ||
+                  ny == tinggi / cw ||
+                  cek_tabrakan(nx, ny, array_ular)
+                  ){
+ 
+                //restart game
+            init();
+            return;
+            }
+ 
+                //cek jika ular kena makanan/memakan makanan
+                if(nx == makanan.x && ny == makanan.y){
+ 
+                  var ekor = { x: nx, y: ny };
+                  nilai++;
+                  
+                  //membuat makanan yang baru
+                  create_makanan();
+                  
+              } else {
+                  var ekor = array_ular.pop();
+                  ekor.x = nx;
+                  ekor.y = ny;
+              }
+ 
+              array_ular.unshift(ekor);
+ 
+              for (var i = 0; i < array_ular.length; i++) {
+                  var c = array_ular[i];
+                  paint_cell(c.x, c.y);
+              }
+ 
+              paint_cell(makanan.x, makanan.y);    
+ 
+                //membuat penilaian skor
+                var nilai_text = "nilai: " + nilai;
+                ctx.fillText(nilai_text, 5, tinggi - 5);
+            }
+ 
+            function paint_cell(x, y) {
+                ctx.fillStyle = "#1abc9c";
+                ctx.fillRect(x * cw, y * cw, cw, cw);
+                ctx.strokeStyle = "#ecf0f1";
+                ctx.strokeRect(x * cw, y * cw, cw, cw);
+            }
+ 
+            function cek_tabrakan(x, y, array) {
+                for (var i = 0; i < array.length; i++) {
+                  if (array[i].x == x && array[i].y == y) return true;
+              }
+              return false;
+            }
+ 
+              //kontrol ular dengan keyboard
+              $(document).keydown(function(e) {
+                var key = e.which;
+                if (key == "37" && tekan != "right") tekan = "left";
+                else if (key == "38" && tekan != "down") tekan = "up";
+                else if (key == "39" && tekan != "left") tekan = "right";
+                else if (key == "40" && tekan != "up") tekan = "down";
+            });
+            });
+ 
+            </script>
+			<script>
+				// Get the current time
+				const currentTime = new Date();
+	
+				// Define the times of day and their corresponding background colors
+				const morning = {
+				start: 6,
+				end: 11,
+				color: 'bisque'
+				};
+				const afternoon = {
+				start: 12,
+				end: 17,
+				color: 'lightgrey'
+				};
+				const evening = {
+				start: 18,
+				end: 23,
+				color: 'black'
+				};
+	
+				// Determine which time of day it is
+				let currentBackgroundColor;
+				if (currentTime.getHours() >= morning.start && currentTime.getHours() <= morning.end) {
+				currentBackgroundColor = morning.color;
+				} else if (currentTime.getHours() >= afternoon.start && currentTime.getHours() <= afternoon.end) {
+				currentBackgroundColor = afternoon.color;
+				} else {
+				currentBackgroundColor = evening.color;
+				}
+	
+				// Update the background color of the document or a specific element
+				document.body.style.backgroundColor = currentBackgroundColor;
+			</script>
+	</body>
+	
+</html>
+
+
+
+
+

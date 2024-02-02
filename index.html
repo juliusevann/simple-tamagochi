@@ -1,0 +1,138 @@
+<html lang="en">
+
+	<head>
+		
+		<link rel="icon" href="asset/tile000.png">
+		<title>UMN Gotcha</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="asset/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+			.header {
+				margin: auto;
+				width: 80%;
+				border: 1px solid #73AD21;
+				padding: 10px;
+				background-color: bisque;
+			}  
+			.Body{
+				margin: auto;
+				width: 30%;
+				border: 1px solid #73AD21;
+				padding: 10px;
+				background-color: bisque;
+			}  
+			.form{
+				margin: auto;
+				width: 70%;
+				border: 3px solid #73AD21;
+				padding: 10px;
+			}
+			.character_select {
+				display:none;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body font color="white">
+		<div class="header" align="center">
+			<img src="asset/ExportedIcons/Icon_Diamond.png" width="100px" height="80px">
+			
+			<h1>UMN GOTCHA</h1>
+		</div>
+		<hr style="height:10px;border-width:0;color:gray;background-color:gray">
+		<div class="body">
+				<div align="center">
+					<div class="w3-content w3-display-container">
+						<form method="GET" action="dashboard.html">
+							<label for="pets" class="mySlides">
+								<input type="radio" id="pets" name="image" value="image1.jpg">
+								<img src="asset/dino idle.gif">
+							</label>
+							<label for="pets" class="mySlides" >
+								<input type="radio" id="pets" name="image" value="image1.jpg">
+								<img src="asset/rino idle.gif">
+							</label>
+							<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+							<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+							<br></br>
+							
+							<div>
+								
+									<label for="petname">Enter Pet Name Here:</label><br>
+									<input type="text" id="petname" name="petname" autofocus required >	
+									<br></br>
+									<div>
+										<button type="submit" >Mulai</button>
+									</div>
+								
+							</div>
+						</form>				
+					</div>
+					<script>
+						var slideIndex = 1;
+						showDivs(slideIndex);
+						
+						function plusDivs(n) {
+						showDivs(slideIndex += n);
+						}
+						
+						function showDivs(n) {
+						var i;
+						var x = document.getElementsByClassName("mySlides");
+						if (n > x.length) {slideIndex = 1}
+						if (n < 1) {slideIndex = x.length}
+						for (i = 0; i < x.length; i++) {
+							x[i].style.display = "none";  
+						}
+						x[slideIndex-1].style.display = "block";  
+						}
+					</script>
+					<script>
+						// Get the current time
+						const currentTime = new Date();
+
+						// Define the times of day and their corresponding background colors
+						const morning = {
+						start: 6,
+						end: 11,
+						color: 'bisque'
+						};
+						const afternoon = {
+						start: 12,
+						end: 17,
+						color: 'lightgrey'
+						};
+						const evening = {
+						start: 18,
+						end: 23,
+						color: 'black'
+						};
+
+						// Determine which time of day it is
+						let currentBackgroundColor;
+						if (currentTime.getHours() >= morning.start && currentTime.getHours() <= morning.end) {
+						currentBackgroundColor = morning.color;
+						} else if (currentTime.getHours() >= afternoon.start && currentTime.getHours() <= afternoon.end) {
+						currentBackgroundColor = afternoon.color;
+						} else {
+						currentBackgroundColor = evening.color;
+						}
+
+						// Update the background color of the document or a specific element
+						document.body.style.backgroundColor = currentBackgroundColor;
+					</script>
+			</form>
+		</div>
+		
+	</body>
+	
+</html>
+
+
+
+
+

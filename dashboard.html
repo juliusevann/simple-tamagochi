@@ -1,0 +1,272 @@
+<html lang="en">
+
+	<head>
+		
+		<link rel="icon" href="asset/tile000.png">
+		<title>UMN Gotcha</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="asset/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+			.header {
+				margin: auto;
+				width: 80%;
+				border: 1px solid #73AD21;
+				padding: 10px;
+				background-color: bisque;
+			}  
+			.dashboard_body{
+				margin: auto;
+				width: 100%;
+				border: 1px solid #73AD21;
+				padding: 10px;
+				background-color: bisque;
+				
+			}  
+			.form{
+				margin: auto;
+				width: 40%;
+				border: 3px solid lightcyan;
+				padding: 10px;
+				background-color: lightcyan;
+			}
+			.character_select {
+				display:none;
+			}
+			
+			.status{
+				margin: auto;
+				width: 50%;
+				border: 3px solid bisque;
+				padding: 10px;
+				background-color: bisque;
+			}
+			.status2{
+				margin: auto;
+				width: 70%;
+				
+				padding: 10px;
+				
+			}
+			
+			#progressBar {
+			width: 20%;
+			height: 20px;
+			background-color: #ddd;
+			border-radius: 10px;
+			overflow: hidden;
+			}
+			#progress {
+				width: 100%;
+				height: 100%;
+				background-color: #4CAF50;
+				border-radius: 10px;
+				transition: width 1s linear;
+			}
+			
+		</style>
+	
+	</head>
+
+	<body font color="white" onload="startTime()">
+		<div class="header" align="center">
+			<img src="asset/ExportedIcons/Icon_Diamond.png" width="100px" height="80px">
+			
+			<h1>UMN GOTCHA</h1>
+		</div>
+		<hr style="height:10px;border-width:0;color:gray;background-color:gray">
+		<div class="dashboard_body">
+				<div class="" align="center">
+							
+							<p>
+							<div id="progressBar"><label>
+								<div id="progress"><img src="asset/ExportedIcons/Icon_Food.png" width="30" height="20"></label></div>
+							</div>
+							</p>
+							<p>
+							<div id="progressBar"><label>
+								<div id="progress"><img src="asset/ExportedIcons/Icon_Award.png" width="30" height="20"></label></div>
+							</div>
+							</p>
+							<p>
+								<div id="progressBar"><label>
+									<div id="progress"><img src="asset/ExportedIcons/Icon_Look.png" width="30" height="20"></label></div>
+								</div>
+							</p>
+							<p>
+								<div id="progressBar"><label>
+									<div id="progress"><img src="asset/ExportedIcons/Icon_Beaker.png" width="30" height="20"></label></div>
+								</div>
+							</p>
+																			
+							
+							<br></br>		
+						<div align="center">
+							Level 1
+						</div>
+						
+				</div>
+				<br></br>
+				<div class="" align="center">
+					<script type="text/javascript">
+						//<![CDATA[
+						var h=(new Date()).getHours();
+						var m=(new Date()).getMinutes();
+						var s=(new Date()).getSeconds();
+						if (h >= 4 && h < 10) document.writeln("Selamat pagi,");
+						if (h >= 10 && h < 15) document.writeln("Selamat siang,");
+						if (h >= 15 && h < 18) document.writeln("Selamat sore,");
+						if (h >= 18 || h < 4) document.writeln("Selamat malam,");
+						//]]>
+					</script>
+					<span id="petname"></span>!
+					<script>
+						const urlParams = new URLSearchParams(window.location.search);
+						const name = urlParams.get("petname");
+						document.getElementById("petname").textContent = name;
+					</script>
+					
+				</div>
+				<div align="center">
+					<div id="results" ></div>
+					<Script>
+						const resultlist = document.getElementByid('results')
+						new URLSearchParams(window.location.search).forEach((value, name)=>{
+							resultlist.append('${name}: ${value}')
+							resultlist.append(document.createElement('br'))
+						})
+					</Script>	
+				
+					
+					<h4><div id="txt" align="center">
+						</div>
+					</h4>
+				</div>
+				<br></br>
+				<div align="center">
+					<img src="asset/dino idle.gif" width="60px" height="60px">
+					<div class="clock"></div>
+					<img id="" alt="">
+					<script>
+						var imageURL = getUrlParameter('pets');
+						document.getElementById('pets').src = imageURL;
+						function getUrlParameter(name) {
+							name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+							var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+							var results = regex.exec(location.search);
+							return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+						}
+					</script>
+				</div>
+			
+				<div class="status2" align="center">
+					
+					<Ul>	
+						<label></label>
+						<button type="submit" value="petname">Makan</button>
+						<label></label>
+						<button type="submit" value="petname">Tidur</button>
+					</Ul>
+					<Ul>					
+						<label></label>
+					
+						<form action="dungeon.html" method="post">
+							<input type="hidden" name="value" id="petname">
+							<button type="submit">Main!</button>
+						
+						<label></label>
+						<button type="submit" value="petname">Obat</button>
+					</Ul>
+					</form>
+				</div>
+			</form>
+		</div>
+		<script>
+			function startTime() {
+			const today = new Date();
+			let h = today.getHours();
+			let m = today.getMinutes();
+			let s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+			setTimeout(startTime, 1000);
+			}
+		
+			function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+			}
+		</script>
+		<script>
+			// Get the current time
+			const currentTime = new Date();
+
+			// Define the times of day and their corresponding background colors
+			const morning = {
+			start: 6,
+			end: 11,
+			color: 'bisque'
+			};
+			const afternoon = {
+			start: 12,
+			end: 17,
+			color: 'lightgrey'
+			};
+			const evening = {
+			start: 18,
+			end: 23,
+			color: 'black'
+			};
+
+			// Determine which time of day it is
+			let currentBackgroundColor;
+			if (currentTime.getHours() >= morning.start && currentTime.getHours() <= morning.end) {
+			currentBackgroundColor = morning.color;
+			} else if (currentTime.getHours() >= afternoon.start && currentTime.getHours() <= afternoon.end) {
+			currentBackgroundColor = afternoon.color;
+			} else {
+			currentBackgroundColor = evening.color;
+			}
+
+			// Update the background color of the document or a specific element
+			document.body.style.backgroundColor = currentBackgroundColor;
+		</script>
+			<script src="script.js"></script>
+			<script>
+				var progressBar = document.getElementById("progress");
+					var progressWidth = 100;
+		
+					function updateProgressBar() {
+						progressWidth -= 1;
+						progressBar.style.width = progressWidth + "%";
+						if (progressWidth == 0) {
+							clearInterval(progressInterval);
+						}
+					}
+		
+					var progressInterval = setInterval(updateProgressBar, 1800);
+			</script>
+			<script>
+				var progressBar = document.getElementById("progress");
+				var progressWidth = 100;
+
+				function updateProgressBar() {
+					progressWidth -= 1;
+					progressBar.style.width = progressWidth + "%";
+					if (progressWidth == 0) {
+						clearInterval(progressInterval);
+					}
+				}
+
+				var progressInterval = setInterval(updateProgressBar, 1000);
+			</script>
+	</body>
+	
+</html>
+
+
+
+
+
